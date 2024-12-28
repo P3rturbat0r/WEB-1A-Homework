@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jsstyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <h3>login</h3>                          
+    <input type="text" id="name">
+    <h3>age</h3>
+    <input type="text" id="age">
+    <button class="button" onclick="change()">change value</button>
+  <script type="text/javascript">
+    let a = document.getElementById("name")
+    let b = document.getElementById("age")
+    console.log(a)
+    function change(){
+        let c = a.value
+        a.value = b.value
+        b.value = c
+    }
+  </script>
+</body>
+</html>

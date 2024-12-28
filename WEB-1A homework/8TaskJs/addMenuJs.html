@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      #menu ul li{
+         background-color: cyan ;
+         padding-left: 20px;
+         text-align: center;
+         display: inline-block;
+         width: 150px;
+
+      }
+      #arrow{
+        padding-left: 40px; 
+        display: none;
+      }
+    </style>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+<body>
+<a href=# onclick="activatePrikoli()">prikoli mutim</a>
+ <div class="submit">
+ <label> Enter sandman</label>
+  <input type="text" id="menuValue"></input>
+ <input type="submit" onclick="addMenu()"></input>
+ </div>
+ <div id="menu">
+
+ </div>
+ <script type="text/javascript">
+    let arrMenu=["menu1", "menu2", "menu3"];
+    function setMenu(){
+      let newMenu="<ul>";
+
+      let arrowHtml="<div id='arrow'>"
+
+
+
+
+
+      for(let i=0;i<arrMenu.length;i++){
+         newMenu+="<li>" +arrMenu[i]+ "</li>";
+         if (i==0) {
+            arrowHtml+='<div><a href="#" onclick="moveRight('+ i +')">-></a></div>'
+         } else if(i ==arrMenu.length-1){
+            arrowHtml+='<div><a href="#" onclick="moveLeft('+ i +')"><-</a></div>'
+         } else{
+            arrowHtml+='<div><a href="#" onclick="moveLeft('+ i +')"><-</a><a href="#" onclick="moveRight('+ i +')">-></a></div>'
+         }
+      }
+
+
+      newMenu +="</ul>";
+
+      arrowHtml+="</div>";
+
+            return newMenu + arrowHtml;
+    }
+    function showMenu(){
+      let menu = setMenu();
+      document.getElementById("menu").innerHTML= menu;
+    }
+
+    function addMenu(){
+      let addValue=document.getElementById("menuValue")
+      arrMenu.push(addValue.value)
+      addValue.value=""
+      showMenu()
+    }
+
+    function moveLeft(indexElement){
+      let currentArrEl=arrMenu[indexElement]
+      let replaceArrEl=arrMenu[indexElement-1]
+      arrMenu.splice(indexElement-1,2,currentArrEl,replaceArrEl);
+      showMenu()
+
+    }
+    function moveRight(indexElement){
+      let currentArrEl=arrMenu[indexElement]
+      let replaceArrEl=arrMenu[indexElement+1]
+      arrMenu.splice(indexElement,2,replaceArrEl,currentArrEl);
+      showMenu()
+    }
+    function activatePrikoli(){
+      document.getElementById("arrow").style.display='block'
+    }
+
+
+    showMenu()
+
+ </script>
+
+
+</body>
+</html>
